@@ -10,15 +10,38 @@ button.addEventListener("click", function () {
   console.log(add(+input1.value, +input2.value));
 });
 
-abstract class House {
-  door: "open" | "closed" = "closed";
-  key: Key = {};
-  tenants: [] = [];
-  constructor(Key) {
+class Person {
+  key = {};
+  constructor(key: Key) {
     this.key = new Key();
   }
-  comeIn() {
+  getKey() {
+    return this.key;
+  }
+}
+
+class Key {
+  signature = Math.random();
+  getSignature() {
+    return this.signature;
+  }
+}
+
+abstract class House {
+  door: "open" | "closed" = "closed";
+  key = {};
+  tenants: Person[] = [];
+  constructor(key: Key) {
+    this.key = new Key();
+  }
+  comeIn(person: Person) {
     if (this.door === "open") {
+      this.tenants.push(person);
     }
   }
+  abstract openDoor(key);
+}
+
+class MyHouse extends House {
+  openDoor(key) {}
 }
