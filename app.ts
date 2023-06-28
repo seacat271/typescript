@@ -11,37 +11,43 @@ button.addEventListener("click", function () {
 });
 
 class Person {
-  key = {};
-  constructor(key: Key) {
-    this.key = new Key();
-  }
-  getKey() {
+  constructor(private key: Key) {}
+  getKey(): Key {
     return this.key;
   }
 }
 
 class Key {
-  signature = Math.random();
+  private signature: number;
+  constructor() {
+    this.signature = Math.random();
+  }
+
   getSignature() {
     return this.signature;
   }
 }
 
 abstract class House {
-  door: "open" | "closed" = "closed";
-  key = {};
-  tenants: Person[] = [];
-  constructor(key: Key) {
-    this.key = new Key();
-  }
+  protected door: boolean = false;
+
+  private tenants: Person[] = [];
+  constructor(protected key: Key) {}
   comeIn(person: Person) {
-    if (this.door === "open") {
-      this.tenants.push(person);
+    if (!this.door) {
+      throw new Error("Door is close");
     }
+    this.tenants.push(person);
+    console.log("Person inside");
   }
-  abstract openDoor(key);
+  abstract openDoor(key: Key): boolean;
 }
 
 class MyHouse extends House {
-  openDoor(key) {}
+  openDoor(key: Key) {
+    if (key.getSignature() !== this.key.getSignature()) {
+      throw new Error("Key to another door");
+    }
+    return (this.door = true);
+  }
 }

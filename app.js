@@ -10,8 +10,7 @@ button.addEventListener("click", function () {
 });
 class Person {
     constructor(key) {
-        this.key = {};
-        this.key = new Key();
+        this.key = key;
     }
     getKey() {
         return this.key;
@@ -27,17 +26,23 @@ class Key {
 }
 class House {
     constructor(key) {
-        this.door = "closed";
-        this.key = {};
+        this.key = key;
+        this.door = false;
         this.tenants = [];
-        this.key = new Key();
     }
     comeIn(person) {
-        if (this.door === "open") {
-            this.tenants.push(person);
+        if (!this.door) {
+            throw new Error("Door is close");
         }
+        this.tenants.push(person);
+        console.log("Person inside");
     }
 }
 class MyHouse extends House {
-    openDoor(key) { }
+    openDoor(key) {
+        if (key.getSignature() !== this.key.getSignature()) {
+            throw new Error("Key to another door");
+        }
+        return (this.door = true);
+    }
 }
