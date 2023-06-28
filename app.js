@@ -9,8 +9,8 @@ button.addEventListener("click", function () {
     console.log(add(+input1.value, +input2.value));
 });
 class Person {
-    constructor(key) {
-        this.key = key;
+    constructor(k) {
+        this.key = k;
     }
     getKey() {
         return this.key;
@@ -25,10 +25,10 @@ class Key {
     }
 }
 class House {
-    constructor(key) {
-        this.key = key;
+    constructor(k) {
         this.door = false;
         this.tenants = [];
+        this.key = k;
     }
     comeIn(person) {
         if (!this.door) {

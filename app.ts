@@ -11,7 +11,10 @@ button.addEventListener("click", function () {
 });
 
 class Person {
-  constructor(private key: Key) {}
+  private key: Key;
+  constructor(k: Key) {
+    this.key = k;
+  }
   getKey(): Key {
     return this.key;
   }
@@ -30,9 +33,11 @@ class Key {
 
 abstract class House {
   protected door: boolean = false;
-
+  protected key: Key;
   private tenants: Person[] = [];
-  constructor(protected key: Key) {}
+  constructor(k: Key) {
+    this.key = k;
+  }
   comeIn(person: Person) {
     if (!this.door) {
       throw new Error("Door is close");
