@@ -26,3 +26,7 @@ function compare(
     weight: bottom.weight,
   };
 }
+
+function merge(objA, objB) {
+  return Object.assign(objA, objB);
+}
