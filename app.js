@@ -1,9 +1,9 @@
-var button = document.querySelector("button");
-var input1 = document.getElementById("num1");
-var input2 = document.getElementById("num2");
-function add(num1, num2) {
-    return num1 + num2;
+"use strict";
+function getPromise() {
+    return new Promise((resolve) => {
+        resolve(["Text", 50]);
+    });
 }
-button.addEventListener("click", function () {
-    console.log(add(+input1.value, +input2.value));
+getPromise().then((data) => {
+    console.log(data);
 });

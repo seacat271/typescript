@@ -1,11 +1,9 @@
-const button = document.querySelector("button")! as HTMLInputElement;
-const input1 = document.getElementById("num1")! as HTMLInputElement;
-const input2 = document.getElementById("num2")! as HTMLInputElement;
-
-function add(num1: number, num2: number) {
-  return num1 + num2;
+function getPromise() {
+  return new Promise((resolve) => {
+    resolve(["Text", 50]);
+  });
 }
 
-button.addEventListener("click", function () {
-  console.log(add(+input1.value, +input2.value));
+getPromise().then((data) => {
+  console.log(data);
 });
