@@ -1,6 +1,6 @@
-function getPromise() {
-  return new Promise((resolve) => {
-    resolve(["Text", 50]);
+function getPromise(): Promise<(string | number)[]> {
+  return new Promise<(string | number)[]>((resolve) => {
+    resolve(["Text", 50, "next"]);
   });
 }
 
