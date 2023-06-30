@@ -1,11 +1,25 @@
-const button = document.querySelector("button")! as HTMLInputElement;
-const input1 = document.getElementById("num1")! as HTMLInputElement;
-const input2 = document.getElementById("num2")! as HTMLInputElement;
-
-function add(num1: number, num2: number) {
-  return num1 + num2;
+function getPromise(): Promise<(string | number)[]> {
+  return new Promise<(string | number)[]>((resolve) => {
+    resolve(["Text", 50, "next"]);
+  });
 }
 
-button.addEventListener("click", function () {
-  console.log(add(+input1.value, +input2.value));
+getPromise().then((data) => {
+  console.log(data);
 });
+
+type AllType = {
+  name: string;
+  position: number;
+  color: string;
+  weight: number;
+};
+
+function compare(top, bottom): AllType {
+  return {
+    name: top.name,
+    color: top.color,
+    position: bottom.position,
+    weight: bottom.weight,
+  };
+}
